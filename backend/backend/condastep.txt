@@ -1,0 +1,4 @@
+conda init cmd.exe
+conda activate ProjectENV
+uvicorn app:app --reload
+docker-compose up --build

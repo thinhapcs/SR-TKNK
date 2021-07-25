@@ -57,7 +57,7 @@ function ListOrder({ current, setCurrent, order, setOrder }) {
   const socketRef = useRef();
 
   useEffect(() => {
-    const url = "ws://localhost:8000/add-item";
+    const url = "ws://server-srtknk-cxnam-ews.education.wise-paas.com/add-item";
     socketRef.current = new WebSocket(url);
     return() => {
       socketRef.current.close();

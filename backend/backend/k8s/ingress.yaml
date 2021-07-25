@@ -15,4 +15,4 @@ spec:
           - path: /?(.*)
             backend:
               serviceName: server-srtknk
-              servicePort: 8000
+              servicePort: 10400

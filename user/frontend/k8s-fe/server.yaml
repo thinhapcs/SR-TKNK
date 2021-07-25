@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server-srtknk
+  name: frontend-srtknk
   labels:
-    name: server
+    name: frontend
 spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      component: server
+      component: frontend
   template:
     metadata:
       labels:
-        component: server
+        component: frontend
     spec:
       containers:
-        - name: server
-          image: anhiuem492/server-srtknk:server
+        - name: frontend
+          image: anhiuem492/frontend-srtknk:frontend.v2
           imagePullPolicy: Always
           ports:
-            - containerPort: 8000
+            - containerPort: 80
           resources:
             limits:
               cpu: 20m

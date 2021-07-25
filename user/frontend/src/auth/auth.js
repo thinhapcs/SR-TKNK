@@ -15,7 +15,7 @@ class Auth {
     formData.append("username", email);
     formData.append("password", password);
     // Create request
-    const request = new Request("http://localhost:8000/auth/login", {
+    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/login", {
       method: "POST",
       body: formData,
     });
@@ -81,7 +81,7 @@ class Auth {
   //     "lastName": lastName,
   //   }
   //   // Create request
-  //   const request = new Request('http://localhost:8000/auth/register', {
+  //   const request = new Request('https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/register', {
   //     method: 'POST',
   //     body: JSON.stringify(formData),
   //   });
@@ -121,7 +121,7 @@ class Auth {
   getUser = async () => {
     const token = localStorage.getItem("token");
     // Create request
-    const request = new Request("http://localhost:8000/auth/users/me", {
+    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/users/me", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -164,7 +164,7 @@ class Auth {
 
     // const tmp = new FormData();
     // tmp.append("hello", "hehe");
-    // const request = new Request("http://localhost:8000/purchase", {
+    // const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/purchase", {
     //   method: "POST",
     //   body: tmp,
     // });

@@ -17,7 +17,7 @@ class Auth {
     // Create request
     
     //"http://localhost:8000/auth/login"
-    const request = new Request(`${process.env.URL_BE}/auth/login`, {
+    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/login", {
       method: "POST",
       body: formData,
     });
@@ -123,7 +123,8 @@ class Auth {
   getUser = async () => {
     const token = localStorage.getItem("token");
     // Create request
-    const request = new Request(`${process.env.URL_BE}/auth/users/me`, {
+    // https://localhost:8000/auth/users/me
+    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/users/me", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

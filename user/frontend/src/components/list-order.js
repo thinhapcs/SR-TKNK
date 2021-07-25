@@ -17,10 +17,6 @@ import {
 } from "@material-ui/core";
 // import axios from "axios";
 import auth from "../auth/auth";
-// import io from "socket.io-client"
-// import { w3cwebsocket as W3CWebSocket } from "websocket";
-
-// const client = new W3CWebSocket("ws://localhost:8000");
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +53,8 @@ function ListOrder({ current, setCurrent, order, setOrder }) {
   const socketRef = useRef();
 
   useEffect(() => {
-    const url = "ws://server-srtknk-cxnam-ews.education.wise-paas.com/add-item";
+    // const url = "ws://server-srtknk-cxnam-ews.education.wise-paas.com/add-item";
+    const url = `${process.env.URL_WS}/add-item`;
     socketRef.current = new WebSocket(url);
     return() => {
       socketRef.current.close();

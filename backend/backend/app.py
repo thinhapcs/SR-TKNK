@@ -11,6 +11,27 @@ from fastapi_users.authentication import CookieAuthentication, JWTAuthentication
 from product import productEntityAdd
 from product import productEntityDelete
 
+# Initiating FastAPI Server
+app = FastAPI()
+
+# # Managing CORS for the React Frontend connections
+from fastapi.middleware.cors import CORSMiddleware
+
+
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+    "http://frontend-srtknk-cxnam-ews.education.wise-paas.com",
+    "https://frontend-srtknk-cxnam-ews.education.wise-paas.com"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 # --- MongoDB Setup -----------------------------------------------------------
 
@@ -118,29 +139,6 @@ fastapi_users = FastAPIUsers(
 # --- FastAPI Server Initialization -------------------------------------------
 
 # Learn more https://frankie567.github.io/fastapi-users/configuration/routers/
-
-# Initiating FastAPI Server
-app = FastAPI()
-
-# # Managing CORS for the React Frontend connections
-from fastapi.middleware.cors import CORSMiddleware
-
-
-origins = [
-    # "http://localhost",
-    # "http://localhost:3000",
-    # "http://frontend-srtknk-cxnam-ews.education.wise-paas.com",
-    "https://frontend-srtknk-cxnam-ews.education.wise-paas.com"
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"]
-)
-
 
 # --- User Authentication Routes ----------------------------------------------
 

@@ -15,7 +15,9 @@ class Auth {
     formData.append("username", email);
     formData.append("password", password);
     // Create request
-    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/login", {
+    
+    //"http://localhost:8000/auth/login"
+    const request = new Request(`${process.env.URL_BE}/auth/login`, {
       method: "POST",
       body: formData,
     });
@@ -121,7 +123,7 @@ class Auth {
   getUser = async () => {
     const token = localStorage.getItem("token");
     // Create request
-    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/users/me", {
+    const request = new Request(`${process.env.URL_BE}/auth/users/me`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -161,13 +163,6 @@ class Auth {
     formData.append("items", items);
     formData.append("total", total);
     formData.append("dateTime", dateTime);
-
-    // const tmp = new FormData();
-    // tmp.append("hello", "hehe");
-    // const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/purchase", {
-    //   method: "POST",
-    //   body: tmp,
-    // });
   };
 }
 

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: anhiuem492/server-srtknk:server.v2
+          image: anhiuem492/server-srtknk:server
           imagePullPolicy: Always
           ports:
             - containerPort: 10400

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Navbar, Container, Row, Col} from 'react-bootstrap';
 import { Login } from '../auth/login';
 // import { Register } from '../auth/register';
 import logo from "../images/SR.TKNK.png";

@@ -66,6 +66,7 @@ export const Home = (props) => {
     const fetchData = async () => {
       if (auth.isAuthenticated()) {
         const result = await auth.getUser();
+        console.log("Hey" + result);
         setUser(result);
       }
     };

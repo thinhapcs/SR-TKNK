@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Paper,
   Typography,
   Table,
-  TableHead,
   TableRow,
   TableCell,
   TableBody,
@@ -47,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
 
 function ListOrder({ current, setCurrent, order, setOrder }) {
   const classes = useStyles();
-  const [total, setTotal] = useState(0);
-  const [hasErrors, setErrors] = useState(false);
+  // const [total, setTotal] = useState(0);
+  const hasErrors = false;
 
   const socketRef = useRef();
 
@@ -68,6 +67,7 @@ function ListOrder({ current, setCurrent, order, setOrder }) {
       setCurrent(data);
       setOrder((order) => [...order, data]);
     }
+    // eslint-disable-next-line
   }, [])
   
   const handlePurchase = async () => {

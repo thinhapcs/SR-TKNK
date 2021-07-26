@@ -128,15 +128,14 @@ from fastapi.middleware.cors import CORSMiddleware
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://127.0.0.1:3000",
-    # "http://frontend-srtknk-cxnam-ews.education.wise-paas.com",
-    # "https://frontend-srtknk-cxnam-ews.education.wise-paas.com"
+    "http://frontend-srtknk-cxnam-ews.education.wise-paas.com",
+    "https://frontend-srtknk-cxnam-ews.education.wise-paas.com"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    # allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]

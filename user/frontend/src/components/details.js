@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Paper,
   Typography,
@@ -7,7 +7,7 @@ import {
   CardContent,
   CardMedia,
 } from "@material-ui/core";
-import picture from "../images/SR.TKNK.png";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: 765,
@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Product({ current }) {
   const classes = useStyles();
-  const [hasErrors, setErrors] = useState(false);
+  // const [hasErrors, setErrors] = useState(false);
+  const hasErrors = false;
   return (
     <div>
       {hasErrors && (

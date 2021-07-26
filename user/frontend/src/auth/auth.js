@@ -16,7 +16,7 @@ class Auth {
     formData.append("password", password);
     // Create request
     
-    //"http://localhost:8000/auth/login"
+    // const request = new Request("http://localhost:8000/auth/login", {
     const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/login", {
       method: "POST",
       body: formData,
@@ -123,7 +123,7 @@ class Auth {
   getUser = async () => {
     const token = localStorage.getItem("token");
     // Create request
-    // https://localhost:8000/auth/users/me
+    // const request = new Request("http://localhost:8000/auth/users/me", {
     const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/users/me", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -147,7 +147,7 @@ class Auth {
     console.log(orders);
     let items = 0;
     let total = 0;
-    orders.map((order) => ((items += order.items), (total += order.cost)));
+    // orders.map((order) => ((items += order.items), (total += order.cost)));
     var today = new Date();
     var date =
       today.getFullYear() +

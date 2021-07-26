@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: anhiuem492/frontend-srtknk:frontend.v2
+          image: anhiuem492/frontend-srtknk:frontend
           imagePullPolicy: Always
           ports:
             - containerPort: 80

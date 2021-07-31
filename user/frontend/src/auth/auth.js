@@ -16,8 +16,8 @@ class Auth {
     formData.append("password", password);
     // Create request
     
-    // const request = new Request("http://localhost:8000/auth/login", {
-    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/login", {
+    const request = new Request("http://localhost:8000/auth/login", {
+    // const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/login", {
       method: "POST",
       body: formData,
     });
@@ -113,9 +113,13 @@ class Auth {
   //   return data;
   // };
 
-  logout = (callback) => {
+  logout = (callback, ws) => {
     localStorage.removeItem("token");
     localStorage.removeItem("permissions");
+    const url = "ws://localhost:8000/add-item";
+    ws = new WebSocket(url);
+    ws.send('Logout');
+
     // Using a callback to load '/' when logout is called
     callback();
   };
@@ -123,8 +127,8 @@ class Auth {
   getUser = async () => {
     const token = localStorage.getItem("token");
     // Create request
-    // const request = new Request("http://localhost:8000/auth/users/me", {
-    const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/users/me", {
+    const request = new Request("http://localhost:8000/auth/users/me", {
+    // const request = new Request("https://server-srtknk-cxnam-ews.education.wise-paas.com/auth/users/me", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

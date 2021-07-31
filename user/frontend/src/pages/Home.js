@@ -61,6 +61,10 @@ export const Home = (props) => {
     lastName: "",
   });
 
+  // const url = "ws://localhost:8000/add-item";
+  // const url = "wss://server-srtknk-cxnam-ews.education.wise-paas.com/add-item";
+  const [ws, setWs] = useState(null);
+
   // Fetch user information on page load
   useEffect(() => {
     const fetchData = async () => {
@@ -78,7 +82,7 @@ export const Home = (props) => {
   const callLogout = async () => {
     auth.logout(() => {
       history.push("/");
-    });
+    }, ws);
   };
 
   return (
@@ -125,6 +129,8 @@ export const Home = (props) => {
               setCurrent={setCurrent}
               order={order}
               setOrder={setOrder}
+              ws={ws}
+              setWs={setWs}
             />
           </Col>
         </Row>

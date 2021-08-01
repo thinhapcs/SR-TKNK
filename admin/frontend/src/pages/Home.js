@@ -10,10 +10,8 @@ export const Home = (props) => {
 
   // User information hook
   const [user, setUser] = useState({
-    "id": "",
+    "_id": "",
     "email": "",
-    "is_active": true,
-    "is_superuser": false,
     "firstName": "",
     "lastName": ""
   });

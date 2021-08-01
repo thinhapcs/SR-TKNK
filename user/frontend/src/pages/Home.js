@@ -11,43 +11,6 @@ export const Home = (props) => {
   // History hook
   const history = useHistory();
   //List product and detail
-  // const [order, setOrder] = useState([
-  //   {
-  //     code: "55001",
-  //     name: "Bánh bông lan",
-  //     items: 2,
-  //     price: 5000,
-  //     weight: 50,
-  //   },
-  //   {
-  //     code: "55002",
-  //     name: "Bông lan Cacao kem tươi sữa",
-  //     items: 2,
-  //     price: 5000,
-  //     weight: 50,
-  //   },
-  //   {
-  //     code: "55003",
-  //     name: "Bông lan chà bông",
-  //     items: 2,
-  //     price: 5000,
-  //     weight: 50,
-  //   },
-  //   {
-  //     code: "55004",
-  //     name: "Bông lan kem dâu",
-  //     items: 2,
-  //     price: 5000,
-  //     weight: 50,
-  //   },
-  //   {
-  //     code: "55005",
-  //     name: "Bông lan phô mai trứng muối",
-  //     items: 2,
-  //     price: 5000,
-  //     weight: 50,
-  //   },
-  // ]);
   const [order, setOrder] = useState([]);
   // Current product
   const [current, setCurrent] = useState(null);

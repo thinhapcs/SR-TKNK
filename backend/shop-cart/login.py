@@ -3,14 +3,10 @@
 
 from typing_extensions import Concatenate
 import motor.motor_asyncio
-import pymongo
-from fastapi import FastAPI, Request, Depends, WebSocket
-from fastapi.encoders import jsonable_encoder
+from fastapi import FastAPI, Request, Depends
 from fastapi_users import FastAPIUsers, models
 from fastapi_users.db import MongoDBUserDatabase
 from fastapi_users.authentication import CookieAuthentication, JWTAuthentication
-from product import productEntityAdd
-from product import productEntityDelete
 
 # --- MongoDB Setup -----------------------------------------------------------
 
@@ -24,22 +20,6 @@ database = client["Profile"]
 
 # MongoDB users collection instance ("users" by default, can be changed)
 collection = database["User"]
-
-db = pymongo.MongoClient(DATABASE_URL)
-categories = db.test
-categories = db.get_database('Categories')
-
-# Query all collections
-bread = categories.Bread
-cannedFood = categories.Canned_Food
-cosmetics = categories.Cosmetics
-freshFruit = categories.Fresh_Fruit
-freshMilk = categories.Fresh_Milk
-instantNoodle = categories.Instant_Noodle
-sauce = categories.Sauce
-snack = categories.Snack
-toothpaste = categories.Toothpaste
-washingPowder = categories.Washing_Powder
 
 # --- Users Collection Schema Setup -------------------------------------------
 
@@ -129,29 +109,6 @@ fastapi_users = FastAPIUsers(
 # --- FastAPI Server Initialization -------------------------------------------
 
 # Learn more https://frankie567.github.io/fastapi-users/configuration/routers/
-
-# Initiating FastAPI Server
-app = FastAPI()
-
-# # Managing CORS for the React Frontend connections
-from fastapi.middleware.cors import CORSMiddleware
-
-
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-    "http://frontend-srtknk-cxnam-ews.education.wise-paas.com",
-    "https://frontend-srtknk-cxnam-ews.education.wise-paas.com"
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    # allow_origins=["*"],
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"]
-)
 
 # --- User Authentication Routes ----------------------------------------------
 
@@ -275,76 +232,3 @@ async def post_custom_protected_route(
 # @app.get("/delete-item")
 # async def delete_item():
 #     return productEntityDelete(bread.find()[0])
-
-
-import cv2
-# this is url, default is 0 (webcam)
-url = 0
-cap = cv2.VideoCapture(url)
-detector = cv2.QRCodeDetector()
-value = None
-
-def getProductDetail(argument, value) -> dict:
-    if(argument == "bread"):
-        return bread.find_one({"code" : value})
-    if(argument == "cannedFood"):
-        return cannedFood.find_one({"code" : value})
-    if(argument == "cosmetics"):
-        return cosmetics.find_one({"code" : value})
-    if(argument == "freshFruit"):
-        return freshFruit.find_one({"code" : value})
-    if(argument == "freshMilk"):
-        return freshMilk.find_one({"code" : value})
-    if(argument == "instantNoodle"):
-        return instantNoodle.find_one({"code" : value})
-    if(argument == "sauce"):
-        return sauce.find_one({"code" : value})
-    if(argument == "snack"):
-        return snack.find_one({"code" : value})
-    if(argument == "toothpaste"):
-        return toothpaste.find_one({"code" : value})
-    if(argument == "washingPowder"):
-        return washingPowder.find_one({"code" : value})
-
-def scanProduct() -> dict:
-    message = None
-    while True:
-        _,img=cap.read()
-        qrcode,one,_=detector.detectAndDecode(img)
-        if qrcode:
-            if value != qrcode:
-                value = qrcode
-                print(qrcode)
-                result = qrcode.split(",")
-                # type1 = result[0]
-                # code1 = result[1]
-                # print(type1)
-                # print(code1)                
-                # print(type(result))
-                pointer = getProductDetail(result[0], result[1])
-                # print(type(pointer))
-                message = productEntityAdd(pointer)
-                # print(message)
-            return message
-        # cv2.imshow('qrcode', img)
-        # if cv2.waitKey(1)==ord('q'):
-        #     break
-
-# data = bread.find_one({ "code" : "55039"})
-# print(type(data))
-# print(data)
-# message = productEntityAdd(data)
-# print(message)
-
-@app.websocket("/add-item")
-async def websocket_add_item(websocket : WebSocket):
-    value = ""
-    await websocket.accept()       
-    while True:
-        # data = websocket.receive_text()
-        # if (data == "Logout"):
-        #     break
-        message = scanProduct()
-        print(message)
-        if (message):
-            await websocket.send_json(message)
